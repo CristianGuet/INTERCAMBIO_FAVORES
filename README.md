@@ -1,5 +1,5 @@
 # INTERCAMBIO_FAVORES
 Proyecto TFG 
 
-[!NOTE]
+> [!NOTE]
 > Tengo pensado cosas en el md que aporten informacion al proyecto 
