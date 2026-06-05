@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/favoresDisponiblesFragment"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="@string/favores" />
+    <item
+        android:id="@+id/misGruposFragment"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="@string/grupos" />
+    <item
+        android:id="@+id/misChatsFragment"
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="@string/chats" />
+    <item
+        android:id="@+id/perfilFragment"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:title="@string/perfil" />
+</menu>

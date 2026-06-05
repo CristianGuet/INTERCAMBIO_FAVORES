@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/favoresDisponiblesFragment">
+
+    <!-- Pestañas principales -->
+    <fragment
+        android:id="@+id/favoresDisponiblesFragment"
+        android:name="com.example.appfavoresmovil.ui.vistas.favores.FragmentoFavoresDisponibles"
+        android:label="@string/favores"
+        tools:layout="@layout/fragmento_favores_disponibles">
+
+        <action
+            android:id="@+id/action_favoresDisponiblesFragment_to_crearFavorFragment"
+            app:destination="@id/crearFavorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/crearFavorFragment"
+        android:name="com.example.appfavoresmovil.ui.vistas.favores.FragmentoCrearFavor"
+        android:label="@string/crear_favor"
+        tools:layout="@layout/fragmento_crear_favor" />
+
+    <fragment
+        android:id="@+id/misGruposFragment"
+        android:name="com.example.appfavoresmovil.ui.vistas.grupos.FragmentoMisGrupos"
+        android:label="@string/grupos"
+        tools:layout="@layout/fragmento_mis_grupos">
+
+        <action
+            android:id="@+id/action_misGruposFragment_to_crearGrupoFragment"
+            app:destination="@id/crearGrupoFragment" />
+
+        <action
+            android:id="@+id/action_misGruposFragment_to_detalleGrupoFragment"
+            app:destination="@id/detalleGrupoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/crearGrupoFragment"
+        android:name="com.example.appfavoresmovil.ui.vistas.grupos.FragmentoCrearGrupo"
+        android:label="@string/crear_grupo"
+        tools:layout="@layout/fragmento_crear_grupo" />
+
+    <fragment
+        android:id="@+id/detalleGrupoFragment"
+        android:name="com.example.appfavoresmovil.ui.vistas.grupos.FragmentoDetalleGrupo"
+        android:label="@string/detalle_grupo"
+        tools:layout="@layout/fragmento_detalle_grupo">
+
+        <argument
+            android:name="grupoId"
+            app:argType="string" />
+        <argument
+            android:name="nombreGrupo"
+            app:argType="string" />
+        <argument
+            android:name="descripcion"
+            app:argType="string" />
+        <argument
+            android:name="miembrosJson"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_detalleGrupoFragment_to_chatDetalleFragment"
+            app:destination="@id/chatDetalleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/misChatsFragment"
+        android:name="com.example.appfavoresmovil.ui.vistas.chats.FragmentoMisChats"
+        android:label="@string/chats"
+        tools:layout="@layout/fragmento_mis_chats">
+
+        <action
+            android:id="@+id/action_misChatsFragment_to_chatDetalleFragment"
+            app:destination="@id/chatDetalleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatDetalleFragment"
+        android:name="com.example.appfavoresmovil.ui.vistas.chats.FragmentoChatDetalle"
+        android:label="@string/chats"
+        tools:layout="@layout/fragmento_chat_detalle">
+
+        <argument
+            android:name="chatId"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="participantesJson"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.appfavoresmovil.ui.vistas.perfil.FragmentoPerfil"
+        android:label="@string/perfil"
+        tools:layout="@layout/fragmento_perfil" />
+
+</navigation>

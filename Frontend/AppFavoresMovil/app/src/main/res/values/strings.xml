@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">Favsy</string>
+
+    <!-- Autenticación -->
+    <string name="correo">Correo electrónico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="contrasena_repetir">Repetir contraseña</string>
+    <string name="nombre_usuario">Nombre de usuario</string>
+    <string name="conectar">Conectar</string>
+    <string name="registrarme">Registrarme</string>
+    <string name="no_tienes_cuenta">¿No tienes cuenta? Regístrate</string>
+    <string name="ya_tienes_cuenta">¿Ya tienes cuenta? Inicia sesión</string>
+    <string name="registro_exitoso">Registro completado. Ya puedes iniciar sesión.</string>
+    <string name="campos_obligatorios">Completa todos los campos</string>
+    <string name="correo_invalido">Introduce un correo válido</string>
+    <string name="contrasena_corta">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="contrasenas_no_coinciden">Las contraseñas no coinciden</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+
+    <!-- Favores -->
+    <string name="favores">Favores</string>
+    <string name="favores_disponibles">Favores disponibles</string>
+    <string name="crear_favor">Crear favor</string>
+    <string name="titulo">Título</string>
+    <string name="descripcion">Descripción</string>
+    <string name="es_presencial">¿Es presencial?</string>
+    <string name="ubicacion">Ubicación</string>
+    <string name="usar_mi_ubicacion">Usar mi ubicación</string>
+    <string name="tipo_compensacion">Tipo de compensación</string>
+    <string name="cantidad_dinero">Cantidad (€)</string>
+    <string name="recompensa_favor">Recompensa en favores</string>
+    <string name="publicar">Publicar</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="modalidad_remoto">Remoto</string>
+    <string name="modalidad_presencial">Presencial</string>
+    <string name="compensacion_favor">Favor</string>
+    <string name="compensacion_dinero">Dinero</string>
+    <string name="compensacion_ambos">Ambos</string>
+    <string name="favor_publicado">Favor publicado correctamente</string>
+    <string name="favor_aceptado">Favor aceptado</string>
+    <string name="sin_favores">No hay favores disponibles</string>
+    <string name="permiso_ubicacion_denegado">Permiso denegado. Introduce la dirección manualmente.</string>
+    <string name="obteniendo_ubicacion">Obteniendo ubicación…</string>
+    <string name="error_ubicacion">No se pudo obtener la ubicación</string>
+
+    <!-- Grupos -->
+    <string name="grupos">Grupos</string>
+    <string name="mis_grupos">Mis grupos</string>
+    <string name="explorar">Explorar</string>
+    <string name="crear_grupo">Crear grupo</string>
+    <string name="nombre_grupo">Nombre del grupo</string>
+    <string name="unirse">Unirse</string>
+    <string name="buscar_grupos">Buscar grupos…</string>
+    <string name="grupo_creado">Grupo creado correctamente</string>
+    <string name="unido_grupo">Te has unido al grupo</string>
+    <string name="sin_grupos">No perteneces a ningún grupo</string>
+    <string name="sin_resultados_grupos">No se encontraron grupos</string>
+    <string name="miembros">Miembros</string>
+    <string name="admin">Admin</string>
+    <string name="abrir_chat">Abrir chat</string>
+    <string name="detalle_grupo">Detalle del grupo</string>
+    <string name="nombre_grupo_corto">El nombre debe tener al menos 3 caracteres</string>
+
+    <!-- Chats -->
+    <string name="chats">Chats</string>
+    <string name="chat_grupo">Chat del grupo</string>
+    <string name="sin_chats">No tienes conversaciones</string>
+    <string name="escribir_mensaje">Escribe un mensaje…</string>
+    <string name="enviar">Enviar</string>
+
+    <!-- Perfil -->
+    <string name="perfil">Perfil</string>
+    <string name="rol">Rol</string>
+
+    <!-- General -->
+    <string name="error_generico">Ha ocurrido un error</string>
+    <string name="cargando">Cargando…</string>
+    <string name="ofertante">Ofertante: %1$s</string>
+    <string name="miembros_count">%1$d miembros</string>
+</resources>

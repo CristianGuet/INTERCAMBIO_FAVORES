@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#7C73FF</color>
+    <color name="colorPrimaryVariant">#6C63FF</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorBackground">#0F0F1A</color>
+    <color name="colorSurface">#1A1A2E</color>
+    <color name="colorOnSurface">#F1F5F9</color>
+    <color name="colorSecondaryText">#94A3B8</color>
+    <color name="colorError">#F87171</color>
+    <color name="colorSuccess">#34D399</color>
+    <color name="bubbleOwn">#7C73FF</color>
+    <color name="bubbleOtherBorder">#334155</color>
+</resources>
