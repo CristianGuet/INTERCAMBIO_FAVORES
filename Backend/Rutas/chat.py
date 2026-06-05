@@ -125,3 +125,13 @@ async def marcar_como_leido(id_chat: str, usuario_logueado: str = Depends(obtene
     )
     
     return {"mensaje": "Se han marcado los mensajes como leídos"}
+
+@router.get("/mis-chats")
+async def obtener_mis_chats(usuario_logueado: str = Depends(obtener_usuario_actual)):
+    usuario_normalizado = usuario_logueado.lower().strip()
+    chats = await coleccion_chats.find(
+        {"participantes": usuario_normalizado}
+    ).sort("ultimaActividad", -1).to_list(50)
+    for c in chats:
+        c["_id"] = str(c["_id"])
+    return chats

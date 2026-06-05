@@ -9,6 +9,9 @@ from Rutas.favor import router as router_favores
 from Rutas.grupo import router as router_grupos 
 from Rutas.chat import router as router_chats 
 from Rutas.perfil import router as router_perfil
+from Rutas.notificacion import router as router_notificaciones
+from Rutas.admin import router as router_admin
+
 
 load_dotenv()
 
@@ -35,6 +38,8 @@ app.include_router(router_favores)
 app.include_router(router_grupos)
 app.include_router(router_chats)
 app.include_router(router_perfil)
+app.include_router(router_notificaciones)
+app.include_router(router_admin)
 
 # Configuracion de CORS
 app.add_middleware(

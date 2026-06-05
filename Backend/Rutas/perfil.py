@@ -12,9 +12,8 @@ async def obtener_mi_perfil(correo_usuario: str = Depends(obtener_usuario_actual
     usuario = await coleccion_usuarios.find_one({"correo": correo_usuario})
     if not usuario:
         raise HTTPException(status_code=404, detail="Usuario no encontrado")
-    
-    # Convertir el ObjectId de Mongo a String para que Pydantic lo valide bien
     usuario["_id"] = str(usuario["_id"])
+    usuario["fotoPerfil"] = usuario.get("fotoPerfil", "default.png")
     return usuario
 
 # Editar los propios datos

@@ -206,3 +206,12 @@ async def eliminar_favor(id_favor: str, usuario_logueado: str = Depends(obtener_
     await coleccion_favores.delete_one({"_id": ObjectId(id_favor)})
     
     return {"mensaje": "Favor eliminado correctamente"}
+
+@router.get("/mis-publicados")
+async def obtener_mis_favores_publicados(usuario_logueado: str = Depends(obtener_usuario_actual)):
+    favores = await coleccion_favores.find(
+        {"idUsuarioOfrece": usuario_logueado}
+    ).sort("fechaCreacion", -1).to_list(100)
+    for f in favores:
+        f["_id"] = str(f["_id"])
+    return favores
