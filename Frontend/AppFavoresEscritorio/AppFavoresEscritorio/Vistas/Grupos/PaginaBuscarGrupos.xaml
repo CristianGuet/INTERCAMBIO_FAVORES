@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AppFavoresEscritorio.VistaModelos.Grupos"
+             xmlns:grupos="clr-namespace:AppFavoresEscritorio.Modelos.Grupos"
+             x:Class="AppFavoresEscritorio.Vistas.Grupos.PaginaBuscarGrupos"
+             x:DataType="vm:BuscarGruposVistaModelo"
+             Title="{DynamicResource Nav_BuscarGrupos}"
+             BackgroundColor="{DynamicResource ColorFondo}">
+
+    <Grid Padding="16" RowDefinitions="Auto,Auto,*,Auto" RowSpacing="12">
+
+        <SearchBar Grid.Row="0"
+                   Text="{Binding TextoBusqueda}"
+                   SearchCommand="{Binding ComandoBuscar}"
+                   Placeholder="Buscar grupos..." />
+
+        <Label Grid.Row="1"
+               Text="{Binding MensajeError}"
+               TextColor="{DynamicResource ColorError}"
+               IsVisible="{Binding HayError}" />
+
+        <ActivityIndicator Grid.Row="2"
+                           IsRunning="{Binding EstaOcupado}"
+                           IsVisible="{Binding EstaOcupado}"
+                           Color="{DynamicResource ColorPrimario}"
+                           VerticalOptions="Start"
+                           HorizontalOptions="Center" />
+
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding Resultados}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="grupos:GrupoBusqueda">
+                    <Border Style="{DynamicResource EstiloTarjeta}"
+                            Margin="0,0,0,12">
+                        <VerticalStackLayout Spacing="8" Padding="4">
+                            <Label Text="{Binding NombreGrupo}"
+                                   FontAttributes="Bold"
+                                   FontSize="16"
+                                   TextColor="{DynamicResource ColorTexto}" />
+                            <Label Text="{Binding Descripcion}"
+                                   TextColor="{DynamicResource ColorTextoSecundario}"
+                                   MaxLines="2"
+                                   LineBreakMode="TailTruncation" />
+                            <Label Text="{Binding NumeroMiembros, StringFormat='{0} miembros'}"
+                                   FontSize="12"
+                                   TextColor="{DynamicResource ColorTextoSecundario}" />
+                            <Button Text="Unirse"
+                                    Style="{DynamicResource EstiloBotonPrimario}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ComandoUnirse}"
+                                    CommandParameter="{Binding .}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Grid.Row="3"
+               Text="No se encontraron grupos"
+               TextColor="{DynamicResource ColorTextoSecundario}"
+               HorizontalOptions="Center"
+               IsVisible="{Binding SinResultados}" />
+    </Grid>
+</ContentPage>

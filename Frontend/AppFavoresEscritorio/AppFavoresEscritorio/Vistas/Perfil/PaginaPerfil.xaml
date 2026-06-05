@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AppFavoresEscritorio.VistaModelos.Perfil"
+             x:Class="AppFavoresEscritorio.Vistas.Perfil.PaginaPerfil"
+             x:DataType="vm:PerfilVistaModelo"
+             Title="{DynamicResource Nav_Perfil}"
+             BackgroundColor="{DynamicResource ColorFondo}">
+
+    <ScrollView Padding="16">
+        <VerticalStackLayout Spacing="16"
+                             HorizontalOptions="Center"
+                             MaximumWidthRequest="480">
+
+            <Image Source="{Binding FotoPerfil, Converter={StaticResource ConvertidorUrlImagen}}"
+                   WidthRequest="100"
+                   HeightRequest="100"
+                   Aspect="AspectFill"
+                   HorizontalOptions="Center"
+                   Margin="0,16,0,0">
+                <Image.Clip>
+                    <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50" />
+                </Image.Clip>
+            </Image>
+
+            <Label Text="{Binding MensajeError}"
+                   TextColor="{DynamicResource ColorError}"
+                   IsVisible="{Binding HayError}"
+                   HorizontalOptions="Center" />
+
+            <ActivityIndicator IsRunning="{Binding EstaOcupado}"
+                               IsVisible="{Binding EstaOcupado}"
+                               Color="{DynamicResource ColorPrimario}"
+                               HorizontalOptions="Center" />
+
+            <!-- Vista normal -->
+            <VerticalStackLayout Spacing="12"
+                                 HorizontalOptions="Center"
+                                 IsVisible="{Binding ModoEdicion, Converter={StaticResource InvertirBoolConverter}}">
+                <Label Text="{Binding NombreUsuario}"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource ColorTexto}"
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding Correo}"
+                       FontSize="14"
+                       TextColor="{DynamicResource ColorTextoSecundario}"
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding Rol}"
+                       FontSize="14"
+                       TextColor="{DynamicResource ColorPrimario}"
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding Descripcion}"
+                       TextColor="{DynamicResource ColorTexto}"
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding TextoCalificacion}"
+                       TextColor="{DynamicResource ColorTextoSecundario}"
+                       HorizontalOptions="Center" />
+                <Button Text="Editar perfil"
+                        Style="{DynamicResource EstiloBotonPrimario}"
+                        Command="{Binding ComandoActivarEdicion}"
+                        HorizontalOptions="Fill" />
+            </VerticalStackLayout>
+
+            <!-- Vista edición -->
+            <VerticalStackLayout Spacing="12"
+                                 HorizontalOptions="Fill"
+                                 IsVisible="{Binding ModoEdicion}">
+                <Label Text="Nombre de usuario"
+                       TextColor="{DynamicResource ColorTexto}"
+                       HorizontalOptions="Center" />
+                <Entry Text="{Binding NombreEdicion}"
+                       TextColor="{DynamicResource ColorTexto}"
+                       BackgroundColor="{DynamicResource ColorInputFondo}"
+                       HorizontalOptions="Fill" />
+
+                <Label Text="Descripcion"
+                       TextColor="{DynamicResource ColorTexto}"
+                       HorizontalOptions="Center" />
+                <Editor Text="{Binding DescripcionEdicion}"
+                        HeightRequest="100"
+                        TextColor="{DynamicResource ColorTexto}"
+                        BackgroundColor="{DynamicResource ColorInputFondo}"
+                        HorizontalOptions="Fill" />
+
+                <HorizontalStackLayout Spacing="12"
+                                       HorizontalOptions="Center">
+                    <Button Text="Guardar"
+                            Style="{DynamicResource EstiloBotonPrimario}"
+                            Command="{Binding ComandoGuardar}"
+                            WidthRequest="160" />
+                    <Button Text="Cancelar"
+                            Style="{DynamicResource EstiloBotonSecundario}"
+                            Command="{Binding ComandoCancelar}"
+                            WidthRequest="160" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

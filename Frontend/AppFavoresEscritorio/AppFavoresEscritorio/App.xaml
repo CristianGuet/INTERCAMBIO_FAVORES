@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:estilos="clr-namespace:AppFavoresEscritorio.Resources.Styles"
+             xmlns:idiomas="clr-namespace:AppFavoresEscritorio.Resources.Idiomas"
+             xmlns:util="clr-namespace:AppFavoresEscritorio.Utilidades"
+             x:Class="AppFavoresEscritorio.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <util:InvertirBoolConverter x:Key="InvertirBoolConverter" />
+            <util:ConvertidorEstadoFavor x:Key="ConvertidorEstadoFavor" />
+            <util:ConvertidorTituloChat x:Key="ConvertidorTituloChat" />
+            <util:ConvertidorEsCero x:Key="ConvertidorEsCero" />
+            <util:ConvertidorUrlImagen x:Key="ConvertidorUrlImagen" />
+            <ResourceDictionary.MergedDictionaries>
+                <estilos:TemaClaro />
+                <idiomas:StringsEs />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

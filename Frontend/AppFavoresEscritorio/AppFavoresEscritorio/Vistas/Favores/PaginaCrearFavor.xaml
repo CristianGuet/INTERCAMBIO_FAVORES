@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AppFavoresEscritorio.VistaModelos.Favores"
+             xmlns:controles="clr-namespace:AppFavoresEscritorio.Controles"
+             xmlns:conv="clr-namespace:AppFavoresEscritorio.Utilidades"
+             x:Class="AppFavoresEscritorio.Vistas.Favores.PaginaCrearFavor"
+             x:DataType="vm:CrearFavorVistaModelo"
+             Title="Crear favor"
+             BackgroundColor="{DynamicResource ColorFondo}">
+
+    <ContentPage.Resources>
+        <conv:InvertirBoolConverter x:Key="InvertirBoolConverter" />
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="0">
+
+            <Border StrokeShape="RoundRectangle 20"
+                    Stroke="{DynamicResource ColorBorde}"
+                    BackgroundColor="{DynamicResource ColorSuperficie}"
+                    Padding="24"
+                    Margin="0,16,0,24">
+                <VerticalStackLayout Spacing="18">
+
+                    <!-- Título -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Título"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource ColorTextoSecundario}" />
+                        <controles:EntryLimpio Placeholder="Mínimo 5 caracteres"
+                                               Text="{Binding Titulo}"
+                                               TextColor="{DynamicResource ColorTexto}"
+                                               PlaceholderColor="{DynamicResource ColorTextoSecundario}" />
+                        <BoxView HeightRequest="1.5"
+                                 BackgroundColor="{DynamicResource ColorInputBorde}"
+                                 Margin="0,-4,0,0" />
+                    </VerticalStackLayout>
+
+                    <!-- Descripción -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Descripción"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource ColorTextoSecundario}" />
+                        <Editor Text="{Binding Descripcion}"
+                                HeightRequest="100"
+                                TextColor="{DynamicResource ColorTexto}"
+                                PlaceholderColor="{DynamicResource ColorTextoSecundario}"
+                                Placeholder="Mínimo 10 caracteres"
+                                BackgroundColor="Transparent" />
+                        <BoxView HeightRequest="1.5"
+                                 BackgroundColor="{DynamicResource ColorInputBorde}"
+                                 Margin="0,-4,0,0" />
+                    </VerticalStackLayout>
+
+                    <!-- Modalidad (Switch presencial) -->
+                    <HorizontalStackLayout Spacing="12" VerticalOptions="Center">
+                        <Label Text="Presencial"
+                            FontSize="14"
+                            TextColor="{DynamicResource ColorTexto}"
+                            VerticalOptions="Center" />
+                        <CheckBox IsChecked="{Binding EsPresencial}"
+                                Color="{DynamicResource ColorPrimario}"
+                                VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <!-- Ubicación (solo presencial) -->
+                    <VerticalStackLayout Spacing="4"
+                                         IsVisible="{Binding MostrarUbicacion}">
+                        <Label Text="Ubicación"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource ColorTextoSecundario}" />
+                        <controles:EntryLimpio Placeholder="Dirección o enlace Google Maps"
+                                               Text="{Binding Ubicacion}"
+                                               TextColor="{DynamicResource ColorTexto}"
+                                               PlaceholderColor="{DynamicResource ColorTextoSecundario}" />
+                        <BoxView HeightRequest="1.5"
+                                 BackgroundColor="{DynamicResource ColorInputBorde}"
+                                 Margin="0,-4,0,0" />
+                    </VerticalStackLayout>
+
+                    <!-- Tipo de compensación -->
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Tipo de compensación"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource ColorTextoSecundario}" />
+                        <Picker SelectedIndex="{Binding IndexCompensacion}"
+                                TextColor="{DynamicResource ColorTexto}"
+                                BackgroundColor="Transparent">
+                            <Picker.Items>
+                                <x:String>Favor</x:String>
+                                <x:String>Dinero</x:String>
+                                <x:String>Ambos</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <BoxView HeightRequest="1.5"
+                                 BackgroundColor="{DynamicResource ColorInputBorde}"
+                                 Margin="0,-4,0,0" />
+                    </VerticalStackLayout>
+
+                    <!-- Cantidad dinero -->
+                    <VerticalStackLayout Spacing="4"
+                                         IsVisible="{Binding MostrarCamposDinero}">
+                        <Label Text="Cantidad (€)"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource ColorTextoSecundario}" />
+                        <controles:EntryLimpio Placeholder="Ej: 10.50"
+                                               Text="{Binding CantidadDineroTexto}"
+                                               Keyboard="Numeric"
+                                               TextColor="{DynamicResource ColorTexto}"
+                                               PlaceholderColor="{DynamicResource ColorTextoSecundario}" />
+                        <BoxView HeightRequest="1.5"
+                                 BackgroundColor="{DynamicResource ColorInputBorde}"
+                                 Margin="0,-4,0,0" />
+                    </VerticalStackLayout>
+
+                    <!-- Recompensa favor -->
+                    <VerticalStackLayout Spacing="4"
+                                         IsVisible="{Binding MostrarCamposFavor}">
+                        <Label Text="¿Qué pides a cambio?"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource ColorTextoSecundario}" />
+                        <controles:EntryLimpio Placeholder="Describe el favor que pides"
+                                               Text="{Binding RecompensaFavor}"
+                                               TextColor="{DynamicResource ColorTexto}"
+                                               PlaceholderColor="{DynamicResource ColorTextoSecundario}" />
+                        <BoxView HeightRequest="1.5"
+                                 BackgroundColor="{DynamicResource ColorInputBorde}"
+                                 Margin="0,-4,0,0" />
+                    </VerticalStackLayout>
+
+                    <!-- Error -->
+                    <Label Text="{Binding MensajeError}"
+                           TextColor="{DynamicResource ColorError}"
+                           FontSize="13"
+                           IsVisible="{Binding HayError}"
+                           HorizontalOptions="Center" />
+
+                    <!-- ActivityIndicator -->
+                    <ActivityIndicator IsRunning="{Binding EstaOcupado}"
+                                       IsVisible="{Binding EstaOcupado}"
+                                       Color="{DynamicResource ColorPrimario}"
+                                       HorizontalOptions="Center" />
+
+                    <!-- Botones -->
+                    <Button Text="Publicar favor"
+                            Command="{Binding ComandoCrear}"
+                            Style="{DynamicResource EstiloBotonPrimario}"
+                            IsEnabled="{Binding EstaOcupado, Converter={StaticResource InvertirBoolConverter}}" />
+
+                    <Button Text="Cancelar"
+                            Command="{Binding ComandoCancelar}"
+                            Style="{DynamicResource EstiloBotonSecundario}" />
+
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="AppFavoresEscritorio.Resources.Idiomas.StringsEs">
+
+    <x:String x:Key="App_Nombre">Favsy</x:String>
+    <x:String x:Key="App_Subtitulo">Intercambio de favores</x:String>
+
+    <x:String x:Key="Shell_Idioma">Idioma</x:String>
+    <x:String x:Key="Shell_Tema">Tema</x:String>
+    <x:String x:Key="Shell_TabLogin">Iniciar sesión</x:String>
+    <x:String x:Key="Shell_TabRegistro">Registro</x:String>
+    <x:String x:Key="Shell_CerrarSesion">Salir</x:String>
+
+    <x:String x:Key="Login_Titulo">Bienvenido de nuevo</x:String>
+    <x:String x:Key="Login_Subtitulo">Inicia sesión para continuar</x:String>
+    <x:String x:Key="Login_Correo">Correo electrónico</x:String>
+    <x:String x:Key="Login_CorreoPlaceholder">tu@correo.com</x:String>
+    <x:String x:Key="Login_Contrasenia">Contraseña</x:String>
+    <x:String x:Key="Login_ContraseniaPlaceholder">Tu contraseña</x:String>
+    <x:String x:Key="Login_Boton">Entrar</x:String>
+    <x:String x:Key="Login_IrRegistro">¿No tienes cuenta? Regístrate</x:String>
+
+    <x:String x:Key="Registro_Titulo">Crear cuenta</x:String>
+    <x:String x:Key="Registro_Subtitulo">Únete a la comunidad</x:String>
+    <x:String x:Key="Registro_Nombre">Nombre de usuario</x:String>
+    <x:String x:Key="Registro_NombrePlaceholder">Tu nombre</x:String>
+    <x:String x:Key="Registro_Correo">Correo electrónico</x:String>
+    <x:String x:Key="Registro_CorreoPlaceholder">tu@correo.com</x:String>
+    <x:String x:Key="Registro_Contrasenia">Contraseña</x:String>
+    <x:String x:Key="Registro_ContraseniaPlaceholder">Mínimo 6 caracteres</x:String>
+    <x:String x:Key="Registro_ConfirmarContrasenia">Confirmar contraseña</x:String>
+    <x:String x:Key="Registro_ConfirmarPlaceholder">Repite tu contraseña</x:String>
+    <x:String x:Key="Registro_Boton">Registrarme</x:String>
+    <x:String x:Key="Registro_IrLogin">¿Ya tienes cuenta? Inicia sesión</x:String>
+
+    <x:String x:Key="Nav_Inicio">Inicio</x:String>
+    <x:String x:Key="Nav_Notificaciones">Notificaciones</x:String>
+    <x:String x:Key="Nav_Perfil">Mi Perfil</x:String>
+    <x:String x:Key="Nav_Favores">Favores disponibles</x:String>
+    <x:String x:Key="Nav_BuscarGrupos">Grupos</x:String>
+    <x:String x:Key="Nav_MisGrupos">Mis Grupos</x:String>
+
+    <x:String x:Key="Inicio_Titulo">Inicio</x:String>
+    <x:String x:Key="Inicio_Bienvenida">¡Hola!</x:String>
+    <x:String x:Key="Inicio_Subtitulo">Explora favores disponibles desde el menú.</x:String>
+
+    <x:String x:Key="Error_CamposVacios">Completa todos los campos.</x:String>
+    <x:String x:Key="Error_NombreCorto">El nombre debe tener al menos 3 caracteres.</x:String>
+    <x:String x:Key="Error_CorreoInvalido">Introduce un correo válido.</x:String>
+    <x:String x:Key="Error_ContraseniaCorta">La contraseña debe tener al menos 6 caracteres.</x:String>
+    <x:String x:Key="Error_ContraseniasNoCoinciden">Las contraseñas no coinciden.</x:String>
+    <x:String x:Key="Error_Generico">Ha ocurrido un error. Inténtalo de nuevo.</x:String>
+    <x:String x:Key="Error_GrupoNoEncontrado">Grupo no encontrado.</x:String>
+    <x:String x:Key="ErrorConexion">No se pudo conectar al servidor.</x:String>
+
+    <x:String x:Key="Exito_Registro">¡Registro exitoso!</x:String>
+    <x:String x:Key="Exito_RegistroDetalle">Ya puedes iniciar sesión con tu cuenta.</x:String>
+    <x:String x:Key="Exito_Login">Sesión iniciada.</x:String>
+
+    <!-- ── Mis Grupos y Mis Favores ── -->
+    <x:String x:Key="MisGruposTitulo">Mis Grupos</x:String>
+    <x:String x:Key="MisFavoresTitulo">Mis Favores</x:String>
+    <x:String x:Key="CrearGrupo">Crear grupo</x:String>
+    <x:String x:Key="NumMiembros">{0} miembros</x:String>
+
+    <!-- ── Estados de favor ── -->
+    <x:String x:Key="EstadoDisponible">Disponible</x:String>
+    <x:String x:Key="EstadoAceptado">Aceptado</x:String>
+    <x:String x:Key="EstadoFinalizado">Finalizado</x:String>
+    <x:String x:Key="EstadoCancelado">Cancelado</x:String>
+
+    <!-- ── Botones de favor ── -->
+    <x:String x:Key="BtnEliminar">Eliminar</x:String>
+    <x:String x:Key="BtnCancelar">Cancelar</x:String>
+    <x:String x:Key="BtnFinalizar">Finalizar</x:String>
+
+    <!-- ── Confirmación de borrado ── -->
+    <x:String x:Key="ConfirmarEliminarTitulo">Eliminar favor</x:String>
+    <x:String x:Key="ConfirmarEliminarMensaje">¿Seguro que quieres eliminar este favor?</x:String>
+    <x:String x:Key="ConfirmarSi">Sí</x:String>
+    <x:String x:Key="ConfirmarNo">No</x:String>
+
+    <!-- ── Chat de grupo ── -->
+    <x:String x:Key="ChatGrupoTitulo">Chat del grupo</x:String>
+    <x:String x:Key="EscribeMensaje">Escribe un mensaje...</x:String>
+    <x:String x:Key="BtnEnviar">Enviar</x:String>
+
+    <!-- ── Listas vacías ── -->
+    <x:String x:Key="VacioGrupos">No perteneces a ningún grupo todavía</x:String>
+    <x:String x:Key="VacioFavores">No tienes favores todavía</x:String>
+
+    <x:String x:Key="RolAdmin">Admin</x:String>
+    <x:String x:Key="RolMiembro">Miembro</x:String>
+
+    <x:String x:Key="Inicio_BienvenidaFormato">Bienvenido, {0}</x:String>
+    <x:String x:Key="Inicio_MisChats">Mis chats</x:String>
+    <x:String x:Key="Inicio_SinChats">No tienes chats activos</x:String>
+    <x:String x:Key="Inicio_MisGrupos">Mis grupos</x:String>
+    <x:String x:Key="Inicio_SinGrupos">No perteneces a ningún grupo</x:String>
+    <x:String x:Key="Inicio_MisFavores">Mis favores publicados</x:String>
+    <x:String x:Key="Inicio_SinFavores">No has publicado favores</x:String>
+    <x:String x:Key="Inicio_NumMiembros">{0} miembros</x:String>
+    <x:String x:Key="MisGrupos_Misfavores">Mis grupos y mis favores</x:String>
+    
+    <x:String x:Key="Shell_ExplorarGrupos">Explorar Grupos</x:String>
+    <x:String x:Key="Shell_ExplorarFavores">Explorar Favores</x:String>
+    <x:String x:Key="Shell_Graficos">Graficos</x:String>
+
+    <x:String x:Key="Informes_Titulo">Estadísticas de tus favores</x:String>
+    <x:String x:Key="Informes_Subtitulo">Estadísticas de tus favores</x:String>
+    <x:String x:Key="Informes_Distribucion">Distribución por estado</x:String>
+    <x:String x:Key="Informes_Resumen">Resumen</x:String>
+    <x:String x:Key="Informes_SinDatos">No hay favores para mostrar</x:String>
+
+</ResourceDictionary>

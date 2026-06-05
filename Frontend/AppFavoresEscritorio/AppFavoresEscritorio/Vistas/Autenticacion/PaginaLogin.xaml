@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AppFavoresEscritorio.VistaModelos.Autenticacion"
+             xmlns:controles="clr-namespace:AppFavoresEscritorio.Controles"
+             x:Class="AppFavoresEscritorio.Vistas.Autenticacion.PaginaLogin"
+             x:DataType="vm:LoginVistaModelo"
+             BackgroundColor="{DynamicResource ColorFondo}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="32,24,32,32" Spacing="0">
+
+            <VerticalStackLayout Spacing="12"
+                                 Margin="0,12,0,40"
+                                 HorizontalOptions="Center">
+                <Image Source="{DynamicResource LogoImagen}"
+                       WidthRequest="80"
+                       HeightRequest="80"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center" />
+                <Label Text="{DynamicResource App_Nombre}"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource ColorTexto}"
+                       HorizontalOptions="Center" />
+                <Label Text="{DynamicResource App_Subtitulo}"
+                       FontSize="14"
+                       TextColor="{DynamicResource ColorTextoSecundario}"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <Border StrokeShape="RoundRectangle 20"
+                    Stroke="{DynamicResource ColorBorde}"
+                    BackgroundColor="{DynamicResource ColorSuperficie}"
+                    Padding="24"
+                    Margin="0,0,0,24">
+                <VerticalStackLayout Spacing="20">
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="{DynamicResource Login_Correo}"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource ColorTextoSecundario}" />
+                        <controles:EntryLimpio Placeholder="{DynamicResource Login_CorreoPlaceholder}"
+                                               Text="{Binding Correo}"
+                                               Keyboard="Email"
+                                               TextColor="{DynamicResource ColorTexto}"
+                                               PlaceholderColor="{DynamicResource ColorTextoSecundario}"
+                                               BackgroundColor="Transparent"
+                                               FontSize="15"
+                                               HeightRequest="40"
+                                               Margin="0" />
+                        <BoxView HeightRequest="1.5"
+                                 BackgroundColor="{DynamicResource ColorInputBorde}"
+                                 Margin="0,-4,0,0" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="{DynamicResource Login_Contrasenia}"
+                               FontSize="13"
+                               FontAttributes="Bold"
+                               TextColor="{DynamicResource ColorTextoSecundario}" />
+                        <controles:EntryLimpio Placeholder="{DynamicResource Login_ContraseniaPlaceholder}"
+                                               Text="{Binding Contrasenia}"
+                                               IsPassword="True"
+                                               TextColor="{DynamicResource ColorTexto}"
+                                               PlaceholderColor="{DynamicResource ColorTextoSecundario}"
+                                               BackgroundColor="Transparent"
+                                               FontSize="15"
+                                               HeightRequest="40"
+                                               Margin="0" />
+                        <BoxView HeightRequest="1.5"
+                                 BackgroundColor="{DynamicResource ColorInputBorde}"
+                                 Margin="0,-4,0,0" />
+                    </VerticalStackLayout>
+
+                    <Label Text="{Binding MensajeError}"
+                           TextColor="{DynamicResource ColorError}"
+                           FontSize="13"
+                           IsVisible="{Binding HayError}"
+                           HorizontalOptions="Center" />
+
+                    <Button Text="{DynamicResource Login_Boton}"
+                            Command="{Binding ComandoLogin}"
+                            Style="{DynamicResource EstiloBotonPrimario}"
+                            IsEnabled="{Binding EstaOcupado, Converter={StaticResource InvertirBoolConverter}}" />
+
+                    <ActivityIndicator IsRunning="{Binding EstaOcupado}"
+                                       IsVisible="{Binding EstaOcupado}"
+                                       Color="{DynamicResource ColorPrimario}"
+                                       HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="{DynamicResource Login_IrRegistro}"
+                    Command="{Binding ComandoIrRegistro}"
+                    Style="{DynamicResource EstiloBotonLink}"
+                    HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

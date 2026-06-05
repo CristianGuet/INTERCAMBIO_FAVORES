@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AppFavoresEscritorio.VistaModelos.Grupos"
+             xmlns:grupos="clr-namespace:AppFavoresEscritorio.Modelos.Grupos"
+             x:Class="AppFavoresEscritorio.Vistas.Grupos.PaginaDetalleGrupo"
+             x:DataType="vm:DetalleGrupoVistaModelo"
+             Title="{Binding NombreGrupo}"
+             BackgroundColor="{DynamicResource ColorFondo}">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto" Padding="16">
+
+
+        <Image Source="{Binding FotoGrupo, Converter={StaticResource ConvertidorUrlImagen}}"
+            WidthRequest="80"
+            HeightRequest="80"
+            Aspect="AspectFill"
+            HorizontalOptions="Center"
+            Margin="0,0,0,12">
+            <Image.Clip>
+                <EllipseGeometry Center="40,40" RadiusX="40" RadiusY="40" />
+            </Image.Clip>
+        </Image>
+        
+        <!-- Cabecera con nombre y descripción -->
+        <VerticalStackLayout Grid.Row="0" Spacing="4" Margin="0,0,0,12">
+            <Label Text="{Binding NombreGrupo}"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="{DynamicResource ColorTexto}" />
+            <Label Text="{Binding Descripcion}"
+                   FontSize="13"
+                   TextColor="{DynamicResource ColorTextoSecundario}"
+                   MaxLines="3"
+                   LineBreakMode="TailTruncation" />
+        </VerticalStackLayout>
+
+        <!-- Error y spinner -->
+        <VerticalStackLayout Grid.Row="1" Spacing="8">
+            <Label Text="{Binding MensajeError}"
+                   TextColor="{DynamicResource ColorError}"
+                   IsVisible="{Binding HayError}" />
+            <ActivityIndicator IsRunning="{Binding EstaOcupado}"
+                               IsVisible="{Binding EstaOcupado}"
+                               Color="{DynamicResource ColorPrimario}"
+                               HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <!-- Lista de miembros -->
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding Miembros}"
+                        SelectionMode="None">
+            <CollectionView.Header>
+                <Label Text="Miembros"
+                       FontSize="15"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource ColorTexto}"
+                       Margin="0,0,0,8" />
+            </CollectionView.Header>
+            <CollectionView.EmptyView>
+                <Label Text="No hay miembros en este grupo."
+                       TextColor="{DynamicResource ColorTextoSecundario}"
+                       HorizontalOptions="Center"
+                       Margin="0,16" />
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="grupos:MiembroGrupo">
+                    <Border StrokeShape="RoundRectangle 12"
+                            Stroke="{DynamicResource ColorBorde}"
+                            BackgroundColor="{DynamicResource ColorSuperficie}"
+                            Padding="12,10"
+                            Margin="0,0,0,8">
+                        <Grid RowDefinitions="Auto,Auto" RowSpacing="8">
+
+                            <!-- Fila 1: correo + rol -->
+                            <VerticalStackLayout Grid.Row="0" Spacing="2">
+                                <Label Text="{Binding CorreoUsuario}"
+                                       FontSize="14"
+                                       FontAttributes="Bold"
+                                       TextColor="{DynamicResource ColorTexto}" />
+                                <Label Text="{Binding Rol}"
+                                       FontSize="12"
+                                       TextColor="{DynamicResource ColorPrimario}" />
+                            </VerticalStackLayout>
+
+                            <!--
+                              Fila 2 de botones — compactos, con HorizontalOptions="Start"
+                              para que no ocupen todo el ancho, y con texto descriptivo corto.
+                              Solo visibles si el usuario logueado es admin del grupo.
+                            -->
+                            <HorizontalStackLayout Grid.Row="1"
+                                                   Spacing="8"
+                                                   IsVisible="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.EsAdmin}">
+
+                                <!-- Hacer admin (solo si el miembro no es ya admin) -->
+                                <Button Text="↑ Admin"
+                                        FontSize="11"
+                                        Padding="10,5"
+                                        HeightRequest="32"
+                                        CornerRadius="8"
+                                        BackgroundColor="{DynamicResource ColorPrimario}"
+                                        TextColor="White"
+                                        HorizontalOptions="Start"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ComandoHacerAdmin}"
+                                        CommandParameter="{Binding .}" />
+
+                                <!-- Quitar admin / bajar a miembro -->
+                                <Button Text="↓ Miembro"
+                                        FontSize="11"
+                                        Padding="10,5"
+                                        HeightRequest="32"
+                                        CornerRadius="8"
+                                        BackgroundColor="{DynamicResource ColorTextoSecundario}"
+                                        TextColor="White"
+                                        HorizontalOptions="Start"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ComandoQuitarAdmin}"
+                                        CommandParameter="{Binding .}" />
+
+                                <!-- Expulsar -->
+                                <Button Text="✕ Expulsar"
+                                        FontSize="11"
+                                        Padding="10,5"
+                                        HeightRequest="32"
+                                        CornerRadius="8"
+                                        BackgroundColor="{DynamicResource ColorError}"
+                                        TextColor="White"
+                                        HorizontalOptions="Start"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ComandoExpulsar}"
+                                        CommandParameter="{Binding .}" />
+                            </HorizontalStackLayout>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Botones de acción del grupo -->
+        <VerticalStackLayout Grid.Row="3" Spacing="10" Margin="0,12,0,0">
+            <Button Text="Abrir chat del grupo"
+                    Style="{DynamicResource EstiloBotonPrimario}"
+                    Command="{Binding ComandoAbrirChat}" />
+            <Button Text="Salir del grupo"
+                    Style="{DynamicResource EstiloBotonSecundario}"
+                    Command="{Binding ComandoSalir}" />
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

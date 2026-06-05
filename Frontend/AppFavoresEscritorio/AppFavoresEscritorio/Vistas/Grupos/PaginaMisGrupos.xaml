@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AppFavoresEscritorio.VistaModelos.Grupos"
+             xmlns:grupos="clr-namespace:AppFavoresEscritorio.Modelos.Grupos"
+             xmlns:favores="clr-namespace:AppFavoresEscritorio.Modelos.Favores"
+             xmlns:local="clr-namespace:AppFavoresEscritorio.Resources.Idiomas"
+             x:Class="AppFavoresEscritorio.Vistas.Grupos.PaginaMisGrupos"
+             x:DataType="vm:MisGruposVistaModelo"
+             Title="{DynamicResource Nav_BuscarGrupos}"
+             BackgroundColor="{DynamicResource ColorFondo}">
+
+    <!-- Sin Shell.NavBarIsVisible="False" para que aparezca el menú con tema/idioma/cerrar sesión -->
+
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                 Command="{Binding ComandoCargar}">
+        <ScrollView>
+            <VerticalStackLayout Padding="16" Spacing="12">
+
+                <!-- Cabecera: título + botón crear grupo -->
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                    <Label Grid.Column="0"
+                           Text="{DynamicResource MisGruposTitulo}"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="{DynamicResource ColorTexto}"
+                           VerticalOptions="Center" />
+                    <Button Grid.Column="1"
+                            Text="+ Crear grupo"
+                            Clicked="OnCrearGrupoClicked"
+                            Style="{DynamicResource EstiloBotonPrimario}"
+                            HeightRequest="40"
+                            Padding="12,0"
+                            CornerRadius="20"
+                            VerticalOptions="Center" />
+                </Grid>
+
+                <!-- Mensaje de error -->
+                <Label Text="{Binding MensajeError}"
+                       TextColor="{DynamicResource ColorError}"
+                       IsVisible="{Binding HayError}"
+                       Margin="0,0,0,4" />
+
+                <!-- Spinner -->
+                <ActivityIndicator IsRunning="{Binding EstaOcupado}"
+                                   IsVisible="{Binding EstaOcupado}"
+                                   Color="{DynamicResource ColorPrimario}"
+                                   HorizontalOptions="Center" />
+
+                <!-- ─── Sección: Mis Grupos ─── -->
+                <Label Text="{DynamicResource MisGruposTitulo}"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource ColorTexto}" />
+
+                <Label Text="{DynamicResource VacioGrupos}"
+                       TextColor="{DynamicResource ColorTextoSecundario}"
+                       HorizontalOptions="Center"
+                       IsVisible="{Binding SinGrupos}" />
+
+                <CollectionView ItemsSource="{Binding MisGrupos}"
+                                IsVisible="{Binding SinGrupos,
+                                    Converter={StaticResource InvertirBoolConverter},
+                                    FallbackValue=True}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="grupos:GrupoPublico">
+                            <Border StrokeShape="RoundRectangle 14"
+                                    Stroke="{DynamicResource ColorBorde}"
+                                    BackgroundColor="{DynamicResource ColorSuperficie}"
+                                    Padding="14,12"
+                                    Margin="0,0,0,10">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ComandoAbrirGrupo}"
+                                        CommandParameter="{Binding .}" />
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout Spacing="6">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Grid.Column="0"
+                                               Text="{Binding NombreGrupo}"
+                                               FontAttributes="Bold"
+                                               FontSize="15"
+                                               TextColor="{DynamicResource ColorTexto}"
+                                               VerticalOptions="Center" />
+                                        <!-- Badge Admin -->
+                                        <Border Grid.Column="1"
+                                                StrokeThickness="0"
+                                                BackgroundColor="{DynamicResource ColorPrimario}"
+                                                Padding="7,3"
+                                                IsVisible="{Binding EsAdmin}"
+                                                VerticalOptions="Center">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="6" />
+                                            </Border.StrokeShape>
+                                            <Label Text="{DynamicResource RolAdmin}"
+                                                   FontSize="10"
+                                                   FontAttributes="Bold"
+                                                   TextColor="White" />
+                                        </Border>
+                                    </Grid>
+                                    <Label Text="{Binding Descripcion}"
+                                           TextColor="{DynamicResource ColorTextoSecundario}"
+                                           FontSize="12"
+                                           MaxLines="2"
+                                           LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding NumeroMiembros, StringFormat='{0} miembros'}"
+                                           FontSize="11"
+                                           TextColor="{DynamicResource ColorTextoSecundario}" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- ─── Divisor ─── -->
+                <BoxView Color="{DynamicResource ColorBorde}"
+                         HeightRequest="1"
+                         Margin="0,6,0,6" />
+
+                <!-- ─── Sección: Mis Favores ─── -->
+                <Label Text="{DynamicResource MisFavoresTitulo}"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource ColorTexto}" />
+
+                <Label Text="{DynamicResource VacioFavores}"
+                       TextColor="{DynamicResource ColorTextoSecundario}"
+                       HorizontalOptions="Center"
+                       IsVisible="{Binding SinFavores}" />
+
+                <CollectionView ItemsSource="{Binding MisFavores}"
+                                IsVisible="{Binding SinFavores,
+                                    Converter={StaticResource InvertirBoolConverter},
+                                    FallbackValue=True}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="favores:FavorPublico">
+                            <Border StrokeShape="RoundRectangle 14"
+                                    Stroke="{DynamicResource ColorBorde}"
+                                    BackgroundColor="{DynamicResource ColorSuperficie}"
+                                    Padding="14,12"
+                                    Margin="0,0,0,10">
+                                <VerticalStackLayout Spacing="8">
+
+                                    <!-- Título -->
+                                    <Label Text="{Binding Titulo}"
+                                           FontAttributes="Bold"
+                                           FontSize="14"
+                                           TextColor="{DynamicResource ColorTexto}" />
+
+                                    <!-- Descripción corta -->
+                                    <Label Text="{Binding Descripcion}"
+                                           MaxLines="2"
+                                           LineBreakMode="TailTruncation"
+                                           TextColor="{DynamicResource ColorTextoSecundario}"
+                                           FontSize="12" />
+
+                                    <!-- Estado + datos -->
+                                    <HorizontalStackLayout Spacing="10">
+                                        <!-- Badge estado -->
+                                        <Border StrokeThickness="0"
+                                                BackgroundColor="{Binding ColorEstadoVisual}"
+                                                Padding="7,3">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="6" />
+                                            </Border.StrokeShape>
+                                            <Label Text="{Binding TextoEstado}"
+                                                   FontSize="11"
+                                                   FontAttributes="Bold"
+                                                   TextColor="White" />
+                                        </Border>
+
+                                        <Label Text="{Binding ResumenCompensacion}"
+                                               FontSize="11"
+                                               TextColor="{DynamicResource ColorTextoSecundario}"
+                                               VerticalOptions="Center" />
+
+                                        <Label Text="{Binding TextoModalidad}"
+                                               FontSize="11"
+                                               TextColor="{DynamicResource ColorTextoSecundario}"
+                                               VerticalOptions="Center" />
+                                    </HorizontalStackLayout>
+
+                                    <!--
+                                      Botones de acción del favor compactos y alineados a la izquierda.
+                                    -->
+                                    <HorizontalStackLayout Spacing="8"
+                                                           Margin="0,4,0,0">
+                                        <!-- Eliminar (disponible/cancelado/finalizado + soy creador) -->
+                                        <Button Text="Eliminar"
+                                                FontSize="12"
+                                                Padding="10,6"
+                                                HeightRequest="34"
+                                                CornerRadius="8"
+                                                BackgroundColor="{DynamicResource ColorError}"
+                                                TextColor="White"
+                                                HorizontalOptions="Start"
+                                                IsVisible="{Binding MostrarEliminar}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ComandoEliminarFavor}"
+                                                CommandParameter="{Binding .}" />
+
+                                        <!-- Cancelar (aceptado + soy participante) -->
+                                        <Button Text="✕ Cancelar"
+                                                FontSize="12"
+                                                Padding="10,6"
+                                                HeightRequest="34"
+                                                CornerRadius="8"
+                                                BackgroundColor="#F59E0B"
+                                                TextColor="White"
+                                                HorizontalOptions="Start"
+                                                IsVisible="{Binding MostrarCancelarFinalizar}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ComandoCancelarFavor}"
+                                                CommandParameter="{Binding .}" />
+
+                                        <!-- Finalizar (aceptado + soy participante) -->
+                                        <Button Text="✓ Finalizar"
+                                                FontSize="12"
+                                                Padding="10,6"
+                                                HeightRequest="34"
+                                                CornerRadius="8"
+                                                BackgroundColor="{DynamicResource ColorExito}"
+                                                TextColor="White"
+                                                HorizontalOptions="Start"
+                                                IsVisible="{Binding MostrarCancelarFinalizar}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.ComandoFinalizarFavor}"
+                                                CommandParameter="{Binding .}" />
+                                    </HorizontalStackLayout>
+
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

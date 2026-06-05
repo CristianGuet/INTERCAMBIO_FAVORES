@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:auth="clr-namespace:AppFavoresEscritorio.Vistas.Autenticacion"
+       xmlns:inicio="clr-namespace:AppFavoresEscritorio.Vistas.Inicio"
+       xmlns:notif="clr-namespace:AppFavoresEscritorio.Vistas.Notificaciones"
+       xmlns:perfil="clr-namespace:AppFavoresEscritorio.Vistas.Perfil"
+       xmlns:favores="clr-namespace:AppFavoresEscritorio.Vistas.Favores"
+       xmlns:grupos="clr-namespace:AppFavoresEscritorio.Vistas.Grupos"
+       xmlns:informes="clr-namespace:AppFavoresEscritorio.Vistas.Informes"
+       xmlns:admin="clr-namespace:AppFavoresEscritorio.Vistas.Administracion"
+       x:Class="AppFavoresEscritorio.Navegacion.AppShell"
+       FlyoutBehavior="Disabled"
+       Shell.BackgroundColor="{DynamicResource ColorFondo}"
+       Shell.ForegroundColor="{DynamicResource ColorTexto}"
+       Shell.TitleColor="{DynamicResource ColorTexto}"
+       Shell.TabBarBackgroundColor="{DynamicResource ColorSuperficie}"
+       Shell.TabBarTitleColor="{DynamicResource ColorTextoSecundario}"
+       Shell.TabBarUnselectedColor="{DynamicResource ColorTextoSecundario}"
+       Shell.TabBarForegroundColor="{DynamicResource ColorPrimario}">
+
+    <Shell.TitleView>
+        <Grid x:Name="barraPreferencias"
+              ColumnDefinitions="*,Auto"
+              Padding="16,8"
+              BackgroundColor="{DynamicResource ColorSuperficie}">
+            <HorizontalStackLayout Grid.Column="1"
+                                   Spacing="8"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="End">
+                <Button x:Name="btnIdioma"
+                        Text="{Binding EtiquetaIdiomaActual}"
+                        Clicked="OnIdiomaClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="{DynamicResource ColorPrimario}"
+                        BorderColor="{DynamicResource ColorPrimario}"
+                        BorderWidth="1"
+                        CornerRadius="18"
+                        WidthRequest="48"
+                        HeightRequest="36"
+                        Padding="0" />
+                <Button x:Name="btnTema"
+                        Text="{Binding EtiquetaTemaActual}"
+                        Clicked="OnTemaClicked"
+                        BackgroundColor="Transparent"
+                        TextColor="{DynamicResource ColorPrimario}"
+                        BorderColor="{DynamicResource ColorPrimario}"
+                        BorderWidth="1"
+                        CornerRadius="18"
+                        WidthRequest="48"
+                        HeightRequest="36"
+                        Padding="0" />
+                <Button x:Name="btnCerrarSesion"
+                        Text="{DynamicResource Shell_CerrarSesion}"
+                        Clicked="OnCerrarSesionClicked"
+                        IsVisible="False"
+                        BackgroundColor="Transparent"
+                        TextColor="{DynamicResource ColorPrimario}"
+                        BorderColor="{DynamicResource ColorPrimario}"
+                        BorderWidth="1"
+                        CornerRadius="18"
+                        HeightRequest="36"
+                        Padding="12,0" />
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
+
+    <!-- Elementos del menú (Flyout) -->
+    <FlyoutItem x:Name="flyoutInicio"
+                Title="{DynamicResource Nav_Inicio}"
+                Route="PaginaInicio"
+                IsVisible="False"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="{DynamicResource Nav_Inicio}"
+                      Route="PaginaInicio"
+                      ContentTemplate="{DataTemplate inicio:PaginaInicio}" />
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="flyoutMisGrupos"
+                Title="{DynamicResource MisGrupos_Misfavores}"
+                Route="PaginaMisGrupos"
+                IsVisible="False"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="{DynamicResource MisGrupos_Misfavores}"
+                      Route="PaginaMisGrupos"
+                      ContentTemplate="{DataTemplate grupos:PaginaMisGrupos}" />
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="flyoutExplorarGrupos"
+                Title="{DynamicResource Shell_ExplorarGrupos}"
+                Route="PaginaExplorarGrupos"
+                IsVisible="False"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="{DynamicResource Shell_ExplorarGrupos}"
+                      Route="PaginaExplorarGrupos"
+                      ContentTemplate="{DataTemplate grupos:PaginaExplorarGrupos}" />
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="flyoutFavores"
+                Title="{DynamicResource Nav_Favores}"
+                Route="PaginaFavoresDisponibles"
+                IsVisible="False"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="{DynamicResource Nav_Favores}"
+                      Route="PaginaFavoresDisponibles"
+                      ContentTemplate="{DataTemplate favores:PaginaFavoresDisponibles}" />
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="flyoutNotificaciones"
+                Title="{DynamicResource Nav_Notificaciones}"
+                Route="PaginaNotificaciones"
+                IsVisible="False"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="{DynamicResource Nav_Notificaciones}"
+                      Route="PaginaNotificaciones"
+                      ContentTemplate="{DataTemplate notif:PaginaNotificaciones}" />
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="flyoutPerfil"
+                Title="{DynamicResource Nav_Perfil}"
+                Route="PaginaPerfil"
+                IsVisible="False"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="{DynamicResource Nav_Perfil}"
+                      Route="PaginaPerfil"
+                      ContentTemplate="{DataTemplate perfil:PaginaPerfil}" />
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="flyoutInformes"
+                Title="{DynamicResource Shell_Graficos}"
+                Route="PaginaInformes"
+                IsVisible="False"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="{DynamicResource Shell_Graficos}"
+                      Route="PaginaInformes"
+                      ContentTemplate="{DataTemplate informes:PaginaInformes}" />
+    </FlyoutItem>
+
+    <!-- Barra de pestañas para autenticación (visible solo cuando no hay sesión) -->
+    <TabBar x:Name="tabBarAuth">
+        <Tab Title="{DynamicResource Shell_TabLogin}">
+            <ShellContent Route="PaginaLogin"
+                          Title="{DynamicResource Shell_TabLogin}"
+                          ContentTemplate="{DataTemplate auth:PaginaLogin}" />
+        </Tab>
+        <Tab Title="{DynamicResource Shell_TabRegistro}">
+            <ShellContent Route="PaginaRegistro"
+                          Title="{DynamicResource Shell_TabRegistro}"
+                          ContentTemplate="{DataTemplate auth:PaginaRegistro}" />
+        </Tab>
+    </TabBar>
+
+    <!-- Cabecera del menú lateral (Flyout) -->
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="{DynamicResource ColorSuperficie}"
+              Padding="16,12,16,12"
+              HeightRequest="50">
+            <Label x:Name="lblUsuarioHeader"
+                   Text="{DynamicResource App_Nombre}"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="{DynamicResource ColorTexto}"
+                   VerticalOptions="Center" />
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <!-- Plantilla de los elementos del menú -->
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="Transparent" Padding="16,14">
+                <Label Text="{Binding Title}"
+                       TextColor="{DynamicResource ColorTexto}"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       LineBreakMode="NoWrap" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <FlyoutItem x:Name="flyoutAdmin"
+            Title="Administrar App"
+            Route="PaginaAdministracion"
+            IsVisible="False"
+            FlyoutDisplayOptions="AsMultipleItems">
+
+        <ShellContent Title="Administrar App"
+                  Route="PaginaAdministracion"
+                  ContentTemplate="{DataTemplate admin:PaginaAdministracion}" />
+    </FlyoutItem>
+</Shell>

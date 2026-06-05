@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AppFavoresEscritorio.VistaModelos.Grupos"
+             x:Class="AppFavoresEscritorio.Vistas.Grupos.PaginaCrearGrupo"
+             x:DataType="vm:CrearGrupoVistaModelo"
+             Title="{DynamicResource CrearGrupo}"
+             BackgroundColor="{DynamicResource ColorFondo}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="16">
+
+            <!-- Error -->
+            <Label Text="{Binding MensajeError}"
+                   TextColor="{DynamicResource ColorError}"
+                   IsVisible="{Binding HayError}" />
+
+            <!-- Nombre -->
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Nombre del grupo"
+                       FontAttributes="Bold"
+                       FontSize="13"
+                       TextColor="{DynamicResource ColorTextoSecundario}" />
+                <Border Style="{DynamicResource EstiloTarjeta}"
+                        Padding="12,0">
+                    <Entry Placeholder="Mínimo 3 caracteres"
+                           Text="{Binding Nombre}"
+                           TextColor="{DynamicResource ColorTexto}"
+                           PlaceholderColor="{DynamicResource ColorTextoSecundario}"
+                           BackgroundColor="Transparent" />
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Descripción -->
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Descripción (opcional)"
+                       FontAttributes="Bold"
+                       FontSize="13"
+                       TextColor="{DynamicResource ColorTextoSecundario}" />
+                <Border Style="{DynamicResource EstiloTarjeta}"
+                        Padding="12,8">
+                    <Editor Placeholder="Describe el grupo..."
+                            Text="{Binding Descripcion}"
+                            TextColor="{DynamicResource ColorTexto}"
+                            PlaceholderColor="{DynamicResource ColorTextoSecundario}"
+                            BackgroundColor="Transparent"
+                            AutoSize="TextChanges"
+                            MinimumHeightRequest="80" />
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Spinner -->
+            <ActivityIndicator IsRunning="{Binding EstaOcupado}"
+                               IsVisible="{Binding EstaOcupado}"
+                               Color="{DynamicResource ColorPrimario}"
+                               HorizontalOptions="Center" />
+
+            <!-- Botón Crear -->
+            <Button Text="{DynamicResource CrearGrupo}"
+                    Style="{DynamicResource EstiloBotonPrimario}"
+                    Command="{Binding ComandoCrear}"
+                    IsEnabled="{Binding EstaOcupado, Converter={StaticResource InvertirBoolConverter}}" />
+
+            <!-- Botón Cancelar -->
+            <Button Text="{DynamicResource BtnCancelar}"
+                    Style="{DynamicResource EstiloBotonLink}"
+                    Command="{Binding ComandoCancelar}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="AppFavoresEscritorio.Resources.Styles.TemaClaro">
+
+    <Color x:Key="ColorFondo">#F5F5F5</Color>
+    <Color x:Key="ColorSuperficie">#FFFFFF</Color>
+    <Color x:Key="ColorPrimario">#6C63FF</Color>
+    <Color x:Key="ColorPrimarioOscuro">#4B44CC</Color>
+    <Color x:Key="ColorTexto">#1A1A2E</Color>
+    <Color x:Key="ColorTextoSecundario">#6B7280</Color>
+    <Color x:Key="ColorBorde">#E5E7EB</Color>
+    <Color x:Key="ColorError">#EF4444</Color>
+    <Color x:Key="ColorExito">#10B981</Color>
+    <Color x:Key="ColorInputFondo">#FFFFFF</Color>
+    <Color x:Key="ColorInputBorde">#6C63FF</Color>
+
+    <x:String x:Key="LogoImagen">claro_amistad.png</x:String>
+    <x:String x:Key="LogoAplicacion">claro_amistad.png</x:String>
+
+    <Style x:Key="EstiloEntrada" TargetType="Entry">
+        <Setter Property="TextColor" Value="{StaticResource ColorTexto}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource ColorTextoSecundario}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontSize" Value="15" />
+    </Style>
+
+    <Style x:Key="EstiloBotonPrimario" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorPrimario}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="HeightRequest" Value="52" />
+    </Style>
+
+    <Style x:Key="EstiloBotonSecundario" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource ColorPrimario}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderColor" Value="{StaticResource ColorPrimario}" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="HeightRequest" Value="48" />
+    </Style>
+
+    <Style x:Key="EstiloBotonLink" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource ColorPrimario}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HeightRequest" Value="40" />
+    </Style>
+
+    <Style x:Key="EstiloTarjeta" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorSuperficie}" />
+        <Setter Property="Stroke" Value="{StaticResource ColorBorde}" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Padding" Value="28" />
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="20" />
+            </Setter.Value>
+        </Setter>
+    </Style>ç
+
+    <Style TargetType="RefreshView">
+        <Setter Property="RefreshColor" Value="Transparent" />
+    </Style>
+
+</ResourceDictionary>
