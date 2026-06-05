@@ -1,7 +1,7 @@
 # Estructura del Proyecto Favsy
 
 ## Backend (FastAPI)
-"""
+```
 Backend/
 ├── Cargas/ # Imágenes predefinidas
 │ ├── claro_amistad.png
@@ -33,10 +33,10 @@ Backend/
 ├── main.py
 ├── requirements.txt
 └── test_API.py
-"""
+```
 
 ## Frontend – AppFavoresEscritorio (MAUI / .NET)
-"""
+```
 AppFavoresEscritorio/
 ├── AppFavoresEscritorio/
 │ ├── Controles/
@@ -203,10 +203,10 @@ AppFavoresEscritorio/
 │ ├── AppFavoresEscritorio.csproj
 │ └── MauiProgram.cs
 └── AppFavoresEscritorio.slnx
-"""
+```
 
 ## Frontend – AppFavoresMovil (Android / Kotlin)
-"""
+```
 AppFavoresMovil/
 ├── app/
 │ ├── src/
@@ -345,10 +345,10 @@ AppFavoresMovil/
 ├── gradlew.bat
 ├── local.properties
 └── settings.gradle.kts
-"""
+```
 
 ## Archivos raíz del repositorio
-"""
+```
 ├── LICENSE
 └── README.md
-"""
+```
